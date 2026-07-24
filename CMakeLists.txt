@@ -59,6 +59,6 @@ target_link_libraries(_blueshard PRIVATE gfx_core)
 # `PYTHONPATH=python python3 examples/spinning_boxes.py`) without a
 # separate install step.
 set_target_properties(_blueshard PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/python/blueshard"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/python/blueshard"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/blueshard"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/blueshard"
 )

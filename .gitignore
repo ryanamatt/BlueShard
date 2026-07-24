@@ -1,5 +1,6 @@
 build/
-python/
+*.so
+__pycache__/
 venv/
 .vscode/
 test.py
