@@ -1,0 +1,16 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# C++ Source and Header files
+*.cpp text diff=cpp
+*.hpp text diff=cpp
+
+# Python files
+*.py text diff=python
+
+# Build and configuration files
+CMakeLists.txt text
+.gitignore text
+.gitattributes text
+
+run text eol=lf
