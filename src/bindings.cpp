@@ -48,13 +48,29 @@ PYBIND11_MODULE(_blueshard, m) {
     // Scene) still holds a reference to them.
     py::class_<Mesh, std::shared_ptr<Mesh>>(m, "Mesh")
         .def_readwrite("position", &Mesh::position)
-        .def_readwrite("angular_velocity", &Mesh::angularVelocity);
+        .def_readwrite("angular_velocity", &Mesh::angularVelocity)
+        .def_static("cube", &Mesh::cube, py::arg("size"))
+        .def_static("plane", &Mesh::plane,
+             py::arg("width"), py::arg("height"),
+             py::arg("r") = 200, py::arg("g") = 200, py::arg("b") = 200, py::arg("a") = 255)
+        .def_static("sphere", &Mesh::sphere,
+             py::arg("radius"), py::arg("segments") = 16,
+             py::arg("r") = 200, py::arg("g") = 200, py::arg("b") = 200, py::arg("a") = 255)
+        .def_static("cylinder", &Mesh::cylinder,
+             py::arg("radius"), py::arg("height"), py::arg("segments") = 16,
+             py::arg("r") = 200, py::arg("g") = 200, py::arg("b") = 200, py::arg("a") = 255)
+        .def_static("from_obj", &Mesh::fromOBJ,
+             py::arg("path"),
+             py::arg("r") = 200, py::arg("g") = 200, py::arg("b") = 200, py::arg("a") = 255);
 
     py::class_<Scene>(m, "Scene")
         .def(py::init<>())
         .def_readwrite("camera", &Scene::camera)
+        .def_readwrite("light_direction", &Scene::lightDirection)
         .def("add_cube", &Scene::addCube,
              py::arg("center"), py::arg("size"), py::arg("angular_velocity"))
+        .def("add_mesh", &Scene::addMesh,
+             py::arg("mesh"), py::arg("position") = Vector3(), py::arg("angular_velocity") = Vector3())
         .def("update", &Scene::update)
         .def("objects", &Scene::objects);
 

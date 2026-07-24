@@ -14,7 +14,17 @@ class Scene {
 public:
     Camera camera;
 
+    // Unit-ish vector pointing *toward* the light source in world space
+    // (doesn't need to be pre-normalized; render() normalizes a copy
+    // each frame). Default is an overhead-front light.
+    Vector3 lightDirection{ 0.3f, -0.8f, 0.4f };
+
     std::shared_ptr<Mesh> addCube(Vector3 center, float size, Vector3 angularVelocity);
+
+    // Takes ownership of an already-built mesh (e.g. from Mesh::fromOBJ,
+    // Mesh::sphere, Mesh::cylinder, Mesh::plane) and places it in the
+    // scene. Prefer this over addCube for any non-cube geometry.
+    std::shared_ptr<Mesh> addMesh(Mesh mesh, Vector3 position, Vector3 angularVelocity);
 
     void update();
     void render(PixelBuffer& buffer) const;

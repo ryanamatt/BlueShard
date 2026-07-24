@@ -4,6 +4,7 @@ A Graphics Library. Still a Work in Progress.
 
 ## Requirements
 
+- SDL3
 - pybind11
 
 ## Build
